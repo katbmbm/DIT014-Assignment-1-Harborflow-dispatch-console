@@ -2,7 +2,7 @@ HARBORFLOW DISPATCH CONSOLE - TEAM README
 
 Run instructions
 ----------------
-Command: ?????
+Command: ??? python harborflow_app.py ??
 Python version tested: 3.13
 
 Team members and concrete contributions
