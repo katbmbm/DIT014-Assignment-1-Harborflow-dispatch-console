@@ -21,7 +21,7 @@ Design notes
 ------------
 Main function boundaries: 
 How input validation is organized:
-How shared calculations are reused: Resused some split, strip and conversion calculations from task 4 to task 5
+How shared calculations are reused: Reused some split, strip and conversion calculations from task 4 to task 5
 
 Known limitations
 -----------------
