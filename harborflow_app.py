@@ -1,0 +1,170 @@
+"""HarborFlow Assignment 1 starter file.
+
+Replace the TODO sections with your team's implementation. Keep the program
+entry point so the file can be run with: python harborflow_app.py
+"""
+
+def validate_booking(): # DO WE NEED ANOTHER FUNCTION TO PASS AN ARG THROUGH??
+
+    booking_ref = (input("\nBooking reference: ").strip()).upper()
+    
+    if len(booking_ref) != 12 or (booking_ref[3] and booking_ref[7]) != "-" or not(booking_ref[4:7].isalpha()) or not(booking_ref[8:12].isdigit()) or booking_ref[:3] != "HFL":
+        print("Invalid booking reference.")
+        return ""
+    else:
+        print("Valid booking reference:", booking_ref)
+        return booking_ref
+
+#Sets the multiplier for service code
+def calculate_quote(distance, weight, service_code):
+    if service_code == "S":
+        service_multiplier = 1.0
+    elif service_code == "X":
+        service_multiplier = 1.25
+    elif service_code == "P":
+        service_multiplier = 1.60
+#Calculates the quote
+    subtotal = 45.0 + distance * 6.50 + weight * 4.00
+    quote = subtotal * service_multiplier
+    return quote
+
+#asks for input
+def input_calculate_quote(): 
+    distance = float(input("Distance (km): "))
+    while distance <= 0:
+        print("Invalid distance input")
+        distance = float(input("Distance (km): "))
+    weight = float(input("Weight (kg): "))
+    while weight <= 0:
+        print("Invalid weight")
+        weight = int(input("Weight (kg): "))
+    service_code = (input("Service code: ")).upper()
+    while service_code not in ["S","X","P"]:
+        print("Invalid service code")
+        service_code = (input("Service code: ")).upper()
+
+    quote = calculate_quote(distance, weight, service_code) #defines quote inside this function
+
+    print(f"Delivery quote: {quote:.2f} SEK")
+
+        #asks for scanned labels
+
+def parcel_labels():
+    scanned_labels = input("Scanned labels: ").upper()
+    scanned_labels = scanned_labels.split(",")
+    load_list = [] #creates an empty list
+
+    for label in scanned_labels: #checks for unique labels and adds them to the list
+        if label.strip() not in load_list:
+            load_list += [label.strip()]
+    count = 0
+
+    for item in load_list: #counts the number of labels and prints them in order
+        count += 1
+        print(f"{count}. {item}")
+    print(f"Total unique parcels: {count}")
+    
+def van_capcity():
+    van_capacity = float(input("Van capacity (kg): "))
+    parcel_weights = input("Parcel weights (kg): ")
+
+    parcel_weights = (parcel_weights.split(","))
+
+    count_parcel = 0
+    parcels_accepted = 0
+    loaded_weight = 0
+
+    for parcel in parcel_weights:
+        parcel = float(parcel.strip())
+        count_parcel += 1
+        if (van_capacity - parcel) >= 0:
+            print(f"Parcel {count_parcel}: ACCEPTED")
+            parcels_accepted += 1
+            van_capacity -= parcel
+            loaded_weight += parcel
+        else:
+            print(f"Parcel {count_parcel}: REJECTED")
+
+    print(f"Accepted parcels: {parcels_accepted}")
+    print(f"Loaded weight: {loaded_weight:.2f} kg")
+    print(f"Remaining capacity: {van_capacity:.2f} kg")
+
+def classify_performance():
+    promised_minutes = int(input("Promised minutes: "))
+    while promised_minutes < 0:
+        print("Invalid input.")
+        promised_minutes = int(input("Promised minutes: "))
+    actual_minutes = int(input("Actual minutes: "))
+    while actual_minutes < 0:
+        print("Invalid input.")
+        actual_minutes = int(input("Actual minutes: "))
+    damaged_parcels = int(input("Damaged parcels: ")) #0 or above
+    while damaged_parcels < 0:
+        print("Invalid input.")
+        damaged_parcels = int(input("Damaged parcels: "))
+
+
+    
+    delay = actual_minutes - promised_minutes
+    if damaged_parcels > 0:
+        status = "SERVICE FAILURE"
+    elif delay <= 0:
+        status = "ON TIME"
+    elif delay <= 15:
+        status = "MINOR DELAY"
+    else:
+        status = "MAJOR DELAY"
+
+    print(f"Delay: {delay} minutes")
+    print(f"Service status: {status}")
+
+def main():
+    """Run the HarborFlow Dispatch Console."""
+
+    choice = "0"
+
+    # Repeatedly print menu until choice is 1
+    while choice != "1":
+
+        # Print menu
+        print("\nHARBORFLOW DISPATCH CONSOLE")
+        print("1. Close console")
+        print("2. Validate booking reference")
+        print("3. Calculate delivery quote")
+        print("4. Consolidate parcel labels")
+        print("5. Check van capacity")
+        print("6. Classify service performance")
+        print("7. Produce weekly dispatch report")
+        choice = input("Select service: ")
+
+        # Check for invalid choice
+        while choice not in ["1","2","3","4","5","6","7"]:
+            print("Invalid choice")
+            choice = input("Select service: ")
+
+        # Call functions for choice
+        if choice=="2":         
+            booking_reference = validate_booking()
+
+        elif choice=="3":
+            input_calculate_quote() 
+
+        elif choice=="4":
+            parcel_labels()
+
+        elif choice=="5":
+            van_capcity()
+
+        elif choice=="6":
+            classify_performance()
+
+        elif choice=="7":
+            produce_report()
+
+    print("Console closed. Dispatch data remains safe.")
+
+        
+            
+
+if __name__ == "__main__":
+    main()
