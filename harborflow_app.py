@@ -33,16 +33,18 @@ def calculate_quote(distance, weight, service_code):
 # Asks for inputs used to calculate quotes
 def input_calculate_quote(): 
     distance = float(input("Distance (km): "))
-    while distance <= 0:
-        print("Invalid distance input")
+    while distance <= 0: # Distance must be greater than 0
+        print("Error - Value must be greater than zero.")
         distance = float(input("Distance (km): "))
+
     weight = float(input("Weight (kg): "))
-    while weight <= 0:
-        print("Invalid weight")
+    while weight <= 0: # Weight must be greater than 0
+        print("Error - Value must be greater than zero.")
         weight = int(input("Weight (kg): "))
+
     service_code = (input("Service code: ")).upper()
-    while service_code not in ["S","X","P"]:
-        print("Invalid service code")
+    while service_code not in ["S","X","P"]: # Service code must be S, X or P
+        print("Error - Service code must be S, X or P.")
         service_code = (input("Service code: ")).upper()
 
     quote = calculate_quote(distance, weight, service_code) # Defines quote by calling this function
@@ -71,10 +73,24 @@ def parcel_labels():
     
 def van_capcity():
     van_capacity = float(input("Van capacity (kg): "))
+    while van_capacity <= 0: # Check if value is invalid
+        print("Error - Value must be greater than zero.")
+        van_capacity = float(input("Van capacity (kg): "))
+
     parcel_weights = input("Parcel weights (kg): ")
+    parcel_weights = (parcel_weights.split(",")) # Seperate parecel weights into a list    
 
-    parcel_weights = (parcel_weights.split(",")) # Seperate parecel weights into a list
-
+    # Check parcel weights (make sure all are greater than 0)
+    valid = False
+    while not valid:
+        valid = True
+        for parcel in parcel_weights: # Run through each individual parcel weight
+            if float(parcel.strip()) <= 0: # If weight is invalid...
+                valid = False
+                print("Error - All values must be greater than zero.")
+                parcel_weights = input("Parcel weights (kg): ")
+                parcel_weights = parcel_weights.split(",") # Seperate parecel weights into a list     
+            
     count_parcel = 0
     parcels_accepted = 0
     loaded_weight = 0
@@ -148,8 +164,8 @@ def main():
         choice = input("Select service: ")
 
         # Check for invalid choice
-        while choice not in ["1","2","3","4","5","6","7"]:
-            print("Invalid choice")
+        while choice not in ["1","2","3","4","5","6","7", "8"]:
+            print("Error - Select a service from 1 to 8.")
             choice = input("Select service: ")
 
         # Call functions for each choice
@@ -169,10 +185,16 @@ def main():
             classify_performance()
 
         elif choice=="7":
+            # Btw, dont forget to add the msg "Error - Weekly report requires 7 delivery counts."
             produce_report()
+
+        elif choice=="8":
+            something()
 
     print("Console closed. Dispatch data remains safe.")
 
+        
+            
 
 if __name__ == "__main__":
     main()
