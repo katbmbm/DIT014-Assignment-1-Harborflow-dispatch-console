@@ -15,20 +15,22 @@ def validate_booking(): # DO WE NEED ANOTHER FUNCTION TO PASS AN ARG THROUGH??
         print("Valid booking reference:", booking_ref)
         return booking_ref
 
-#Sets the multiplier for service code
+
 def calculate_quote(distance, weight, service_code):
+    # Sets the service multiplier
     if service_code == "S":
         service_multiplier = 1.0
     elif service_code == "X":
         service_multiplier = 1.25
     elif service_code == "P":
         service_multiplier = 1.60
-#Calculates the quote
+
+    # Calculates the quote
     subtotal = 45.0 + distance * 6.50 + weight * 4.00
     quote = subtotal * service_multiplier
     return quote
 
-#asks for input
+# Asks for inputs used to calculate quotes
 def input_calculate_quote(): 
     distance = float(input("Distance (km): "))
     while distance <= 0:
@@ -43,68 +45,75 @@ def input_calculate_quote():
         print("Invalid service code")
         service_code = (input("Service code: ")).upper()
 
-    quote = calculate_quote(distance, weight, service_code) #defines quote inside this function
+    quote = calculate_quote(distance, weight, service_code) # Defines quote by calling this function
 
     print(f"Delivery quote: {quote:.2f} SEK")
 
-        #asks for scanned labels
-
+       
 def parcel_labels():
     scanned_labels = input("Scanned labels: ").upper()
-    scanned_labels = scanned_labels.split(",")
-    load_list = [] #creates an empty list
+    scanned_labels = scanned_labels.split(",") # Seperate scanned labels into a list
+    load_list = [] # Creates an empty list
 
-    for label in scanned_labels: #checks for unique labels and adds them to the list
+    # Checks for unique labels and adds them to the list
+    for label in scanned_labels: 
         if label.strip() not in load_list:
             load_list += [label.strip()]
+
     count = 0
 
-    for item in load_list: #counts the number of labels and prints them in order
+    # Counts the number of labels and prints them in order
+    for item in load_list: 
         count += 1
         print(f"{count}. {item}")
     print(f"Total unique parcels: {count}")
+
     
 def van_capcity():
     van_capacity = float(input("Van capacity (kg): "))
     parcel_weights = input("Parcel weights (kg): ")
 
-    parcel_weights = (parcel_weights.split(","))
+    parcel_weights = (parcel_weights.split(",")) # Seperate parecel weights into a list
 
     count_parcel = 0
     parcels_accepted = 0
     loaded_weight = 0
 
-    for parcel in parcel_weights:
+    for parcel in parcel_weights: # Run through each individual parcel weight
         parcel = float(parcel.strip())
         count_parcel += 1
-        if (van_capacity - parcel) >= 0:
+
+        if (van_capacity - parcel) >= 0: # If the parcel is compatible with the remaining capacity
             print(f"Parcel {count_parcel}: ACCEPTED")
             parcels_accepted += 1
             van_capacity -= parcel
             loaded_weight += parcel
-        else:
+        else: # If the parcel is too heavy
             print(f"Parcel {count_parcel}: REJECTED")
 
     print(f"Accepted parcels: {parcels_accepted}")
     print(f"Loaded weight: {loaded_weight:.2f} kg")
     print(f"Remaining capacity: {van_capacity:.2f} kg")
 
+# Input delivery time and damaged parcels and check for validity
 def classify_performance():
+    # Each variable has to be 0 or above
     promised_minutes = int(input("Promised minutes: "))
     while promised_minutes < 0:
         print("Invalid input.")
         promised_minutes = int(input("Promised minutes: "))
+
     actual_minutes = int(input("Actual minutes: "))
     while actual_minutes < 0:
         print("Invalid input.")
         actual_minutes = int(input("Actual minutes: "))
-    damaged_parcels = int(input("Damaged parcels: ")) #0 or above
+
+    damaged_parcels = int(input("Damaged parcels: "))
     while damaged_parcels < 0:
         print("Invalid input.")
         damaged_parcels = int(input("Damaged parcels: "))
 
-
-    
+    # Categorize service status
     delay = actual_minutes - promised_minutes
     if damaged_parcels > 0:
         status = "SERVICE FAILURE"
@@ -117,6 +126,7 @@ def classify_performance():
 
     print(f"Delay: {delay} minutes")
     print(f"Service status: {status}")
+
 
 def main():
     """Run the HarborFlow Dispatch Console."""
@@ -142,7 +152,7 @@ def main():
             print("Invalid choice")
             choice = input("Select service: ")
 
-        # Call functions for choice
+        # Call functions for each choice
         if choice=="2":         
             booking_reference = validate_booking()
 
@@ -163,8 +173,6 @@ def main():
 
     print("Console closed. Dispatch data remains safe.")
 
-        
-            
 
 if __name__ == "__main__":
     main()
