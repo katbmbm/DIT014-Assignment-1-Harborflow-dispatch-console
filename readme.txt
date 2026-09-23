@@ -11,7 +11,7 @@ Name: Frida
 Contribution: Defined the main(). Wrote the code for task 4. Contributed to the code for tasks 2, 3 and 5.
 
 Name: Katherine
-Contribution:Defined the main(). Wrote the code for tasks 2, 5 and 6. Contributed to the code for tasks 3 and 4. 
+Contribution: Defined the main(). Wrote the code for tasks 2, 5 and 6. Contributed to the code for tasks 3 and 4. 
 
 Name: Kevi
 Contribution: Wrote the code for tasks 3, 6. Contributed to the code for tasks 4 and 5. 
