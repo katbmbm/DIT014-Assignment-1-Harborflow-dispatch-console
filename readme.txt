@@ -14,7 +14,7 @@ Name: Katherine
 Contribution: Defined the main(). Wrote the code for tasks 2, 5 and 8. Contributed to the code for tasks 3 and 4. 
 
 Name: Kevi
-Contribution: Wrote the code for tasks 3, 6. Contributed to the code for tasks 4 and 5. 
+Contribution: Wrote the code for tasks 3, 6, and 9. Contributed to the code for tasks 4 and 5. 
 
 
 Design notes
