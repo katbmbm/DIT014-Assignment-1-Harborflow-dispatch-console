@@ -143,6 +143,70 @@ def classify_performance():
     print(f"Delay: {delay} minutes")
     print(f"Service status: {status}")
 
+def produce_report():
+    completed_deliveries = input("Completed deliveries: ").split(",")
+
+    # Keep asking until we get exactly 7 positive integers 
+    while len(completed_deliveries) != 7 or not all(deliveries.strip().isdigit() for deliveries in completed_deliveries):
+        print("Error - Weekly report requires 7 delivery counts.")
+        completed_deliveries = input("Completed deliveries: ").split(",")
+
+    #Creates lists and defines variables
+    deliveries_list = []
+    mapped_deliveries = []
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    total = 0
+    count_deliveries = 0
+
+#Adds deliveries to a list and adds days mapped to deliveries to another list
+#Count_deliveries is a postion for the items in days
+    for deliveries in completed_deliveries:
+        deliveries = deliveries.strip()
+        deliveries_list.append(int(deliveries))
+        mapped_deliveries += [[days[count_deliveries], int(deliveries)]]
+        deliveries = int(deliveries)
+        #Counts how many deliveries in total and calculates average
+        count_deliveries += 1
+        total += deliveries
+    average_deliveries = total/7
+
+    #Find the highest day
+    highest_day = ""
+    highest_count = -1
+
+    for days, deliveries in mapped_deliveries:     
+        if deliveries > highest_count:
+            highest_count = deliveries
+            highest_day = days
+
+    #Find the lowest day
+    lowest_day = ""
+    lowest_count = 100
+
+    for days, deliveries in mapped_deliveries:     
+        if deliveries < lowest_count:
+            lowest_count = deliveries
+            lowest_day = days
+        
+    #Number of days matching or above target
+    daily_target = -1
+    while daily_target < 0:
+        daily_target = int(input("Daily target: "))
+        print("Error - Daily target must be non-negative.")
+
+    count_target = 0
+    
+    for deliveries in deliveries_list:
+        if deliveries >= daily_target:
+            count_target +=1
+
+    print("\nWeekly dispatch report")
+    print(f"Total deliveries: {total}")
+    print(f"Average per day: {average_deliveries:.2f}")
+    print(f"Highest day: {highest_day} ({highest_count})")
+    print(f"Lowest day: {lowest_day} ({lowest_count})")
+    print(f"Days meeting target: {count_target}")
+
 
 def main():
     """Run the HarborFlow Dispatch Console."""
