@@ -191,8 +191,9 @@ def produce_report():
     #Number of days matching or above target
     daily_target = int(input("Daily target: "))
     while daily_target < 0:
-        daily_target = int(input("Daily target: "))
         print("Error - Daily target must be non-negative.")
+        daily_target = int(input("Daily target: "))
+        
 
     count_target = 0
     
