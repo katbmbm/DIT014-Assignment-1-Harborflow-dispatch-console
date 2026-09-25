@@ -8,7 +8,7 @@ Python version tested: 3.13
 Team members and concrete contributions
 ---------------------------------------
 Name: Frida
-Contribution: Defined the main(). Wrote the code for task 4. Contributed to the code for tasks 2, 3 and 5.
+Contribution: Defined the main(). Wrote the code for task 4 and 7. Contributed to the code for tasks 2, 3 and 5.
 
 Name: Katherine
 Contribution: Defined the main(). Wrote the code for tasks 2, 5 and 8. Contributed to the code for tasks 3 and 4. 
