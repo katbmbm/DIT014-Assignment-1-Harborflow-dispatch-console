@@ -189,7 +189,7 @@ def produce_report():
             lowest_day = days
         
     #Number of days matching or above target
-    daily_target = -1
+    daily_target = int(input("Daily target: "))
     while daily_target < 0:
         daily_target = int(input("Daily target: "))
         print("Error - Daily target must be non-negative.")
