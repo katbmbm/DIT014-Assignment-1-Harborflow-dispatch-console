@@ -208,6 +208,45 @@ def produce_report():
     print(f"Lowest day: {lowest_day} ({lowest_count})")
     print(f"Days meeting target: {count_target}")
 
+def compare_service():
+    distance = float(input("Distance (km): "))
+    while distance <= 0:
+        print("Value must be greater than zero")
+        distance = float(input("Distance (km): "))
+
+    weight = float(input("Weight (kg): "))
+    while distance <= 0:
+        print("Value must be greater than zero")
+        weight = float(input("Weight (kg): "))
+
+    print("Service comparison")
+
+    price_s = calculate_quote(distance, weight, "S")
+    price_x = calculate_quote(distance, weight, "X")
+    price_p = calculate_quote(distance, weight, "P")
+
+    print(f"Standard: {price_s:.2f} SEK")
+    print(f"Express: {price_x:.2f} SEK")
+    print(f"Priority: {price_p:.2f} SEK")
+
+    #Determine cheapest service
+    if price_s <= price_x and price_s <= price_p:
+        cheapest = "Standard"
+    elif price_x <= price_s and price_x <= price_p:
+        cheapest = "Express"
+    else:
+        cheapest = "Priority"
+
+    # Determine most expensive service
+    if price_s >= price_x and price_s >= price_p:
+        most_expensive = "Standard"
+    elif price_x >= price_s and price_x >= price_p:
+        most_expensive = "Express"
+    else:
+        most_expensive = "Priority"
+
+    print(f"Cheapest service: {cheapest}")
+    print(f"Most expensive service: {most_expensive}")
 
 def main():
     """Run the HarborFlow Dispatch Console."""
@@ -254,7 +293,7 @@ def main():
             produce_report()
 
         elif choice=="8":
-            something()
+            compare_service()
 
     print("Console closed. Dispatch data remains safe.")
 
