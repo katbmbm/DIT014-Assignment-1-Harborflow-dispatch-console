@@ -5,6 +5,6 @@ Quote,Decimal values,Decimal distance and weight,Two-decimal quote,Two-decimal q
 Labels,Duplicates,Mixed case duplicate labels,First-seen unique order,First-seen unique order,Frida,Run
 Capacity,Later item fits,Rejected heavy item followed by lighter item,Later item accepted,Later item accepted,Katherine,Run
 Performance,Boundary delay,Delay of 15 minutes,MINOR DELAY,MINOR DELAY,Kevi,Run
-Weekly report,Last-day tie,Tied high or low on later day,Last tied day reported,,,Not run
-Validation,Invalid then valid,Invalid value followed by valid value,Only affected prompt repeats,,,Not run
-Scenarios,All services,One distance and weight,Three prices and extrema,,,Not run
+Weekly report,Last-day tie,Tied high or low on later day,Last tied day reported,Last tied day reported,Frida,Run
+Validation,Invalid then valid,Invalid value followed by valid value,Only affected prompt repeats,Only affected prompt repeats,Kevi,Run
+Scenarios,All services,One distance and weight,Three prices and extrema,Three prices and extrema,Kevi,Run
