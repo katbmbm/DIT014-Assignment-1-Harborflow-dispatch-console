@@ -214,7 +214,7 @@ def compare_service():
         distance = float(input("Distance (km): "))
 
     weight = float(input("Weight (kg): "))
-    while distance <= 0:
+    while weight <= 0:
         print("Value must be greater than zero")
         weight = float(input("Weight (kg): "))
 
