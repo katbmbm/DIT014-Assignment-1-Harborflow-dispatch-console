@@ -283,7 +283,7 @@ def main():
             parcel_labels()
 
         elif choice=="5":
-            van_capcity()
+            van_capacity()
 
         elif choice=="6":
             classify_performance()
