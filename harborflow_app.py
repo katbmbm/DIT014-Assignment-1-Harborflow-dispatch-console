@@ -170,11 +170,11 @@ def calculate_produce_report(completed_deliveries, daily_target):
  lowest_day = ""
  lowest_count = 100   
  for days, deliveries in mapped_deliveries:     
-    if deliveries > highest_count:
+    if deliveries >= highest_count:
         highest_count = deliveries
         highest_day = days
 
-    if deliveries < lowest_count:
+    if deliveries <= lowest_count:
                 lowest_count = deliveries
                 lowest_day = days
  count_target = 0
