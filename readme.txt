@@ -2,7 +2,7 @@ HARBORFLOW DISPATCH CONSOLE - TEAM README
 
 Run instructions
 ----------------
-Command: ??? python harborflow_app.py ??
+Command: python harborflow_app.py
 Python version tested: 3.13
 
 Team members and concrete contributions
@@ -19,8 +19,8 @@ Contribution: Wrote the code for tasks 3, 6, and 9. Contributed to the code for 
 
 Design notes
 ------------
-Main function boundaries: 
-How input validation is organized:
+Main function boundaries: The main function drives the program through a menu-based loop. On each iteration, it displays the main menu and prompts the user to select an option. Based on the user's choice, main calls the corresponding function to carry out the requested action. This cycle repeats until the user selects the exit option, at which point the loop ends and the program terminates.
+How input validation is organized: We first read the inputs and if they're invalid, the program runs a while loop to repeatedly ask for information until it's valid.
 How shared calculations are reused: Reused some split, strip and conversion calculations from task 4 to task 5
 
 Known limitations
