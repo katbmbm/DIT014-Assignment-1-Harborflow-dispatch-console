@@ -4,7 +4,7 @@ Replace the TODO sections with your team's implementation. Keep the program
 entry point so the file can be run with: python harborflow_app.py
 """
 
-def validate_booking(): # DO WE NEED ANOTHER FUNCTION TO PASS AN ARG THROUGH??
+def validate_booking():
 
     booking_ref = (input("\nBooking reference: ").strip()).upper()
     
