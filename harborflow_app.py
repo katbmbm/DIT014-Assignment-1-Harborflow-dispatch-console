@@ -41,7 +41,7 @@ def input_calculate_quote():
     weight = float(input("Weight (kg): "))
     while weight <= 0: # Weight must be greater than 0
         print("Error - Value must be greater than zero.")
-        weight = int(input("Weight (kg): "))
+        weight = float(input("Weight (kg): "))
 
     service_code = (input("Service code: ")).upper()
     while service_code not in ["S","X","P"]: # Service code must be S, X or P
