@@ -8,12 +8,13 @@ def validate_booking(): # DO WE NEED ANOTHER FUNCTION TO PASS AN ARG THROUGH??
 
     booking_ref = (input("\nBooking reference: ").strip()).upper()
     
-    if len(booking_ref) != 12 or (booking_ref[3] and booking_ref[7]) != "-" or not(booking_ref[4:7].isalpha()) or not(booking_ref[8:12].isdigit()) or booking_ref[:3] != "HFL":
+    while len(booking_ref) != 12 or (booking_ref[3] and booking_ref[7]) != "-" or not(booking_ref[4:7].isalpha()) or not(booking_ref[8:12].isdigit()) or booking_ref[:3] != "HFL":
         print("Invalid booking reference.")
-        return ""
-    else:
-        print("Valid booking reference:", booking_ref)
-        return booking_ref
+        booking_ref = (input("\nBooking reference: ").strip()).upper()
+    
+
+    print("Valid booking reference:", booking_ref)
+    return booking_ref
 
 
 def calculate_quote(distance, weight, service_code):
