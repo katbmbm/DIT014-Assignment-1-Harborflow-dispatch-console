@@ -72,7 +72,7 @@ def parcel_labels():
     print(f"Total unique parcels: {count}")
 
     
-def van_capcity():
+def van_capacity():
     van_capacity = float(input("Van capacity (kg): "))
     while van_capacity <= 0: # Check if value is invalid
         print("Error - Value must be greater than zero.")
